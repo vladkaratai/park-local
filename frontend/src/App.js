@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Toaster } from "@/components/ui/sonner";
+import Toaster from "@/components/ui/sonner";
 import "./App.css";
 
 import HomePage from "./pages/HomePage";
@@ -16,7 +16,7 @@ import ExitTimer from "./pages/ExitTimer";
 
 function App() {
   return (
-    <div className="App min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
+    <div className="App min-h-screen bg-background dark">
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<HomePage />} />

@@ -1,24 +1,19 @@
 import * as React from "react"
 import { Slot } from "@radix-ui/react-slot"
 import { cva } from "class-variance-authority";
-
 import { cn } from "@/lib/utils"
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-pink-500 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
   {
     variants: {
       variant: {
-        default:
-          "bg-primary text-primary-foreground shadow hover:bg-primary/90",
-        destructive:
-          "bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90",
-        outline:
-          "border border-input shadow-sm hover:bg-accent hover:text-accent-foreground",
-        secondary:
-          "bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80",
-        ghost: "hover:bg-accent hover:text-accent-foreground",
-        link: "text-primary underline-offset-4 hover:underline",
+        default: "bg-purple-600 text-white shadow hover:bg-purple-700",
+        destructive: "bg-red-600 text-white shadow-sm hover:bg-red-700",
+        outline: "border border-slate-700 shadow-sm hover:bg-slate-800 hover:text-slate-100",
+        secondary: "bg-blue-900/50 text-blue-200 shadow-sm hover:bg-blue-900",
+        ghost: "hover:bg-slate-800 hover:text-slate-100",
+        link: "text-pink-500 underline-offset-4 hover:underline",
       },
       size: {
         default: "h-9 px-4 py-2",
@@ -43,6 +38,5 @@ const Button = React.forwardRef(({ className, variant, size, asChild = false, ..
       {...props} />
   );
 })
-Button.displayName = "Button"
 
-export { Button, buttonVariants }
+export default Button

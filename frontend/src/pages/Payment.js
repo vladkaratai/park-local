@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { Button } from "@/components/ui/button";
+import Button from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Badge } from "@/components/ui/badge";
+import Input from "@/components/ui/input";
+import Label from "@/components/ui/label";
+import Badge from "@/components/ui/badge";
 import { ArrowLeft, CreditCard, Shield, Clock, MapPin } from "lucide-react";
 import { toast } from "sonner";
 
@@ -43,7 +43,7 @@ const Payment = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 px-4 py-8">
+    <div className="min-h-screen bg-background px-4 py-8">
       <div className="max-w-md mx-auto">
         {/* Header */}
         <div className="flex items-center mb-8">
@@ -56,46 +56,46 @@ const Payment = () => {
           >
             <ArrowLeft className="h-6 w-6" />
           </Button>
-          <h1 className="text-2xl font-bold text-gray-800">
+          <h1 className="text-2xl font-bold text-foreground">
             Payment
           </h1>
         </div>
 
         {/* Order Summary */}
-        <Card className="mb-8 shadow-xl bg-white/80 backdrop-blur">
+        <Card className="mb-8 shadow-xl bg-secondary/80 backdrop-blur">
           <CardHeader>
-            <CardTitle className="flex items-center text-gray-800">
+            <CardTitle className="flex items-center text-foreground">
               <MapPin className="h-5 w-5 mr-2" />
               Order Details
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
-            <div className="bg-gray-50 rounded-lg p-4">
-              <div className="font-semibold text-gray-800 mb-1">
+            <div className="bg-muted/50 rounded-lg p-4">
+              <div className="font-semibold text-foreground mb-1">
                 {parking?.name || "Alexanderplatz Parking"}
               </div>
-              <div className="text-gray-600 text-sm mb-2">
+              <div className="text-muted-foreground text-sm mb-2">
                 {parking?.address || "Alexanderplatz 1, 10178 Berlin, Germany"}
               </div>
-              <div className="text-blue-600 text-sm font-medium">
+              <div className="text-purple-400 text-sm font-medium">
                 Spot {spot?.id || "A1"} - {spot?.type || "Standard"}
               </div>
             </div>
 
             <div className="flex items-center justify-between py-2">
               <div className="flex items-center">
-                <Clock className="h-4 w-4 text-gray-500 mr-2" />
-                <span className="text-gray-700">Parking time:</span>
+                <Clock className="h-4 w-4 text-muted-foreground mr-2" />
+                <span className="text-foreground">Parking time:</span>
               </div>
-              <Badge variant="outline" className="text-blue-600">
+              <Badge variant="outline" className="text-purple-400">
                 {duration?.time || "1 hour"}
               </Badge>
             </div>
 
-            <div className="border-t pt-4">
+            <div className="border-t border-border pt-4">
               <div className="flex items-center justify-between text-xl font-bold">
-                <span>Total amount:</span>
-                <div className="flex items-center text-green-600">
+                <span className="text-foreground">Total amount:</span>
+                <div className="flex items-center text-purple-400">
                   €{duration?.price?.toFixed(2) || "2.50"}
                 </div>
               </div>
@@ -104,9 +104,9 @@ const Payment = () => {
         </Card>
 
         {/* Payment Methods */}
-        <Card className="mb-8 shadow-xl bg-white/80 backdrop-blur">
+        <Card className="mb-8 shadow-xl bg-secondary/80 backdrop-blur">
           <CardHeader>
-            <CardTitle className="flex items-center text-gray-800">
+            <CardTitle className="flex items-center text-foreground">
               <CreditCard className="h-5 w-5 mr-2" />
               Payment Method
             </CardTitle>
@@ -119,13 +119,13 @@ const Payment = () => {
                   key={method.id}
                   onClick={() => setPaymentMethod(method.id)}
                   className={`p-3 rounded-lg border-2 cursor-pointer transition-all text-center ${paymentMethod === method.id
-                      ? "border-blue-500 bg-blue-50"
-                      : "border-gray-200 hover:border-gray-300"
+                    ? "border-purple-500 bg-purple-900/30"
+                    : "border-border hover:border-muted-foreground/50"
                     }`}
                   data-testid={`payment-method-${method.id}`}
                 >
                   <div className="text-2xl mb-1">{method.icon}</div>
-                  <div className="text-xs font-medium text-gray-700">
+                  <div className="text-xs font-medium text-muted-foreground">
                     {method.name}
                   </div>
                 </div>
@@ -184,8 +184,8 @@ const Payment = () => {
 
             {/* Other payment method placeholders */}
             {paymentMethod !== "card" && (
-              <div className="text-center py-8 text-gray-500">
-                <CreditCard className="h-12 w-12 mx-auto mb-4 text-gray-300" />
+              <div className="text-center py-8 text-muted-foreground">
+                <CreditCard className="h-12 w-12 mx-auto mb-4 text-muted-foreground/50" />
                 <p>Connect with {paymentMethods.find(m => m.id === paymentMethod)?.name}</p>
                 <p className="text-sm mt-2">This will redirect to the payment provider</p>
               </div>
@@ -194,13 +194,13 @@ const Payment = () => {
         </Card>
 
         {/* Security Info */}
-        <Card className="mb-8 bg-green-50 border-green-200">
+        <Card className="mb-8 bg-purple-900/20 border-purple-400/30">
           <CardContent className="p-4">
-            <div className="flex items-center text-green-700">
+            <div className="flex items-center text-purple-300">
               <Shield className="h-5 w-5 mr-2" />
               <span className="font-medium">Secure payment</span>
             </div>
-            <p className="text-green-600 text-sm mt-2">
+            <p className="text-purple-400 text-sm mt-2">
               Your data is protected with 256-bit SSL encryption
             </p>
           </CardContent>
@@ -210,7 +210,7 @@ const Payment = () => {
         <Button
           onClick={handlePayment}
           disabled={loading}
-          className="w-full bg-gradient-to-r from-green-500 to-blue-500 hover:from-green-600 hover:to-blue-600 text-white font-semibold py-4 text-lg rounded-xl shadow-lg transform transition hover:scale-105 disabled:opacity-70"
+          className="w-full bg-gradient-to-r from-purple-600 to-pink-500 hover:from-purple-700 hover:to-pink-600 text-white font-semibold py-4 text-lg rounded-xl shadow-lg transform transition hover:scale-105 disabled:opacity-70"
           data-testid="pay-button"
         >
           {loading ? (
